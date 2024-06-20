@@ -31,3 +31,8 @@ Create a new TLS secret named tls-secret with the given key pair
 - `kubectl create secret tls tls-secret --cert=path/to/tls.crt --key=path/to/tls.key`
 
 
+# Secret creation for letsencrypt
+
+chown $USER:$USER privkey.pem fullchain.pem
+kubectl create secret generic rlcosta-secret --from-file=/home/ec2-user/docker-k8-basic/k8-deployment-files/certs/privkey.pem --from-file=/home/ec2-user/docker-k8-basic/k8-deployment-files/certs/fullchain.pem
+
