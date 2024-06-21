@@ -93,7 +93,7 @@ data:
         ssl_certificate /etc/nginx/certs/fullchain.pem;
         ssl_certificate_key /etc/nginx/certs/privkey.pem;
 
-        location / {
+        location /ejbca/adminweb {
             proxy_pass https://cert-service.default.svc.cluster.local:8443;
             proxy_set_header Host $host;
             proxy_set_header X-Real-IP $remote_addr;
