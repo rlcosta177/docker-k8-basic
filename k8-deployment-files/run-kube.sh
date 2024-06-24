@@ -1,10 +1,10 @@
 #!/bin/bash
 
 sleep 2
-kubectl apply -f efs-sc.yaml
+kubectl apply -f stor-class.yaml
 
 sleep 2
-kubectl apply -f efs-pvc.yaml
+kubectl apply -f per-vol-claim.yaml
 
 sleep 2
 kubectl apply -f postgres-confserv.yaml
