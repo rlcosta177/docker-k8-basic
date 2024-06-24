@@ -17,6 +17,18 @@ spec:
         image: linuxserver/wikijs:latest
         ports:
         - containerPort: 3000
+        env:
+        - name: DB_HOST
+          value: postgres
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_USER
+          value: wiki-user
+        - name: DB_PASS
+          value: passwd
+        - name: DB_NAME
+          value: wiki
+
 ---
 apiVersion: v1
 kind: Service

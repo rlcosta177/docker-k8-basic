@@ -20,7 +20,8 @@ spec:
         - containerPort: 443
         volumeMounts:
         - name: nginx-config
-          mountPath: /etc/nginx/conf.d
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
         - name: nginx-certs
           mountPath: /etc/nginx/certs
       volumes:

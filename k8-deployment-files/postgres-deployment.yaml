@@ -1,0 +1,76 @@
+# postgres-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      securityContext:
+        fsGroup: 1000
+      containers:
+      - name: postgres
+        image: postgres:13
+        env:
+        - name: POSTGRES_DB
+          value: defaultdb
+        - name: POSTGRES_USER
+          value: postgres
+        - name: POSTGRES_PASSWORD
+          value: passwd
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: postgres-storage
+          mountPath: /var/lib/postgresql/data
+        - name: init-db
+          mountPath: /docker-entrypoint-initdb.d
+        securityContext:
+          runAsUser: 1000
+      volumes:
+      - name: postgres-storage
+        persistentVolumeClaim:
+          claimName: efs-pvc
+      - name: init-db
+        configMap:
+          name: postgres-init-scripts
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init-scripts
+data:
+  init.sql: |
+    CREATE DATABASE cert;
+    CREATE DATABASE plik;
+    CREATE DATABASE wiki;
+    CREATE DATABASE secret;
+    CREATE USER cert-user WITH ENCRYPTED PASSWORD 'passwd';
+    CREATE USER plik-user WITH ENCRYPTED PASSWORD 'passwd';
+    CREATE USER wiki-user WITH ENCRYPTED PASSWORD 'passwd';
+    CREATE USER secret-user WITH ENCRYPTED PASSWORD 'passwd';
+    GRANT ALL PRIVILEGES ON DATABASE cert TO cert-user;
+    GRANT ALL PRIVILEGES ON DATABASE plik TO plik-user;
+    GRANT ALL PRIVILEGES ON DATABASE wiki TO wiki-user;
+    GRANT ALL PRIVILEGES ON DATABASE secret TO secret-user;
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
+

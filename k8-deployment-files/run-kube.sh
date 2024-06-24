@@ -1,5 +1,15 @@
 #!/bin/bash
 
+sleep 2
+kubectl apply -f efs-sc.yaml
+
+sleep 2
+kubectl apply -f efs-pvc.yaml
+
+sleep 2
+kubectl apply -f postgres-deployment.yaml
+
+sleep 2
 kubectl apply -f plik-deployment.yaml
 
 sleep 2

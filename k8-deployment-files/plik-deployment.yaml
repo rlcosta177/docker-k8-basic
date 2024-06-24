@@ -17,6 +17,17 @@ spec:
         image: rootgg/plik:latest
         ports:
         - containerPort: 8080
+        env:
+        - name: DB_HOST
+          value: postgres
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_USER
+          value: plik-user
+        - name: DB_PASS
+          value: passwd
+        - name: DB_NAME
+          value: plik
 ---
 apiVersion: v1
 kind: Service
