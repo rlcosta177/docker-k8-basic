@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init-scripts
+data:
+  init.sql: |
+    CREATE DATABASE cert;
+    CREATE DATABASE plik;
+    CREATE DATABASE wiki;
+    CREATE DATABASE secret;
+    
+    CREATE USER cert-user WITH ENCRYPTED PASSWORD 'passwd';
+    CREATE USER plik-user WITH ENCRYPTED PASSWORD 'passwd';
+    CREATE USER wiki-user WITH ENCRYPTED PASSWORD 'passwd';
+    CREATE USER secret-user WITH ENCRYPTED PASSWORD 'passwd';
+      
+    GRANT ALL PRIVILEGES ON DATABASE cert TO cert-user;
+    GRANT ALL PRIVILEGES ON DATABASE plik TO plik-user;
+    GRANT ALL PRIVILEGES ON DATABASE wiki TO wiki-user;
+    GRANT ALL PRIVILEGES ON DATABASE secret TO secret-user;
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector:
+    app: postgres
+  ports:
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432

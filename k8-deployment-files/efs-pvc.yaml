@@ -3,9 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: efs-pvc
 spec:
-  accessModes:
-    - ReadWriteMany
   storageClassName: efs-sc
   resources:
     requests:
       storage: 5Gi
+  accessModes:
+    - ReadWriteMany

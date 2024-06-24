@@ -7,6 +7,9 @@ sleep 2
 kubectl apply -f efs-pvc.yaml
 
 sleep 2
+kubectl apply -f postgres-confserv.yaml
+
+sleep 2
 kubectl apply -f postgres-deployment.yaml
 
 sleep 2
