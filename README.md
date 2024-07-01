@@ -10,10 +10,11 @@ Project's goal:
 
 ---
 
-Instructions are inside docker-deployment-files and k8s-deployment-files
+Instructions for each deployment method are inside docker-deployment-files and k8s-deployment-files
 
+---
 
-
+```bash
     1  clear
     2  sudo hostnamectl set-hostname eks.controller
     3  sudo reboot
@@ -132,3 +133,4 @@ Instructions are inside docker-deployment-files and k8s-deployment-files
   116  cd archive/
   117  ls
   118  sudo cd archive/
+```
