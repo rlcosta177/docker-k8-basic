@@ -37,12 +37,13 @@ Create a new TLS secret named tls-secret with the given key pair
 - create the certificates with certbot:
   ```bash
   sudo yum -y group install 'Development Tools'
-  sudo yum install epel-release | NOT SURE
+  sudo yum install epel OR sudo amazon-linux-extras install epel  | (IM NOT SURE WHICH ONE)
   sudo yum install certbot ('mod_ssl' & 'python2-certbot-apache' as well for apache)
   sudo certbot certonly
   > [option 1]
   > example.domain.com app1.example.domain.com app2.exampe.domain.com app3.exampe.domain.com app4.exampe.domain.com
   ```
+- cd `/etc/letsencrypt/archive/live/domain.name`
 - copy the certifcates to another folder (`out of the project's folder` OR `inside the folder and add them to '.gitignore'` )
 
 - `chown $USER:$USER privkey.pem fullchain.pem` (execute it as normal user | change to 'your-user':'your-user' if executing as root)
