@@ -25,14 +25,17 @@ kubectl apply -f <yaml-file-name>
 
 ---
 
-# Secret creation for the certificates
+# Secret creation for self-signed certificates 
 
 Create a new TLS secret named tls-secret with the given key pair
 - `kubectl create secret tls tls-secret --cert=path/to/tls.crt --key=path/to/tls.key`
 
+---
 
-# Secret creation for letsencrypt
+# Secret creation for letsencrypt certificates(prefered)
 
-chown $USER:$USER privkey.pem fullchain.pem
-kubectl create secret generic rlcosta-secret --from-file=/home/ec2-user/docker-k8-basic/k8-deployment-files/certs/privkey.pem --from-file=/home/ec2-user/docker-k8-basic/k8-deployment-files/certs/fullchain.pem
+- create the certificates with certbot:
+
+- `chown $USER:$USER privkey.pem fullchain.pem`
+- `kubectl create secret generic rlcosta-secret --from-file=/path/to/privkey.pem --from-file=/path/to/fullchain.pem`
 
