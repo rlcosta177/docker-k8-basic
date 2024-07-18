@@ -29,3 +29,8 @@ kubectl apply -f nginx-configmap.yaml
 
 sleep 2
 kubectl apply -f nginx-deployment.yaml
+
+
+# Wait for the NGINX deployment to be ready
+#kubectl rollout status deployment/nginx-proxy
+# Can be done with any deployment ofc
