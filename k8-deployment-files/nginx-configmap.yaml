@@ -96,10 +96,11 @@ data:
       }
     }
 
-#    stream {
-#      server {
-#         listen 5432;
-#         proxy_pass postgres.default.svc.cluster.local:5432;
-#      }
-#    }
+# Para aceder á base de dados pelo pgadmin
+    stream {
+      server {
+         listen 5432;
+         proxy_pass postgres.default.svc.cluster.local:5432;
+      }
+    }
 
