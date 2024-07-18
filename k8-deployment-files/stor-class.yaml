@@ -5,10 +5,11 @@ metadata:
 provisioner: efs.csi.aws.com
 parameters:
   provisioningMode: efs-ap
+  fileSystemId: fs-xxxxxxxxxxxxxxx  
+  accessPointId: fsap-xxxxxxxxxxxxxx
+  basePath: "/data"
   directoryPerms: "700"
   gidRangeStart: "1000"
   gidRangeEnd: "2000"
-  fileSystemId: fs-0e104b1fbcea8a1c8  
-  basePath: "/data"
-volumeBindingMode: Immediate
 reclaimPolicy: Retain
+volumeBindingMode: Immediate
