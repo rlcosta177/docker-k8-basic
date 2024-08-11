@@ -25,11 +25,11 @@ kubectl apply -f <yaml-file-name>
 
 ---
 
-# Secret creation for self-signed certificates 
-
-Create a new TLS secret named tls-secret with the given key pair
-- `kubectl create secret tls tls-secret --cert=path/to/tls.crt --key=path/to/tls.key`
-
+- Create a network loadbalancer that listens on port 80 and 443
+- Create two targetgroups(instance type)
+  - one listens on port 80
+  - the other listens on port 443
+- register the cluster's workers as pending
 ---
 
 # Secret creation for letsencrypt certificates(prefered)
@@ -50,3 +50,11 @@ Create a new TLS secret named tls-secret with the given key pair
 - `kubectl create secret generic rlcosta-secret --from-file=/path/to/privkey.pem --from-file=/path/to/fullchain.pem`
 - then associate them in the `nginx-configmap.yaml` and `nginx-deployment.yaml` files 
 
+---
+
+# Secret creation for self-signed certificates 
+
+Create a new TLS secret named tls-secret with the given key pair
+- `kubectl create secret tls tls-secret --cert=path/to/tls.crt --key=path/to/tls.key`
+
+---
