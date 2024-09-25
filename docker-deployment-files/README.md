@@ -24,8 +24,8 @@ docker restart <container-name>
 
 # removing components in docker
 ```bash
-docker rm $(docker ps -aq)
-docker rmi <image_name_or_id1> <image_name_or_id2> <image_name_or_id3>
+docker rm -vf $(docker ps -aq)
+docker rmi -f $(docker images -aq)
 docker image prune -a
 docker container prune
 docker system prune
